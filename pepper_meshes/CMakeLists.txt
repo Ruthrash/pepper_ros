@@ -29,7 +29,7 @@ file(DOWNLOAD
 "https://github.com/ros-naoqi/pepper_meshes_installer/raw/master/peppermeshes-0.2.0-linux-x64-installer.run"
   ${INSTALLER_TMP_PATH} SHOW_PROGRESS
   INACTIVITY_TIMEOUT 60
-  EXPECTED_MD5 9e78f24b52838e704210881f92c0983d
+  #EXPECTED_MD5 9e78f24b52838e704210881f92c0983d
 )
 else()
 message(STATUS "Downloading 32 bit installer")
