@@ -1,0 +1,141 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <include>
+      <uri>model://office_small</uri>
+      <name>office_small</name>
+      <pose>1.95 -0.42349 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://table_conference_1</uri>
+      <name>table</name>
+      <pose>2.7678 -0.467 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://file_box_2</uri>
+      <name>box_1</name>
+      <pose>2.25 -0.571 0.66235 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://file_box_2</uri>
+      <name>box_2</name>
+      <pose>2.75 -0.571 0.66235 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://file_box_2</uri>
+      <name>box_3</name>
+      <pose>3.293 -0.571 0.66235 0 0 0</pose>
+    </include>
+
+
+    <model name="blockA">
+      <pose>1.4956 -0.095403 0.771262 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.15</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.15</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    <static>1</static>
+      <plugin name="push_animate" filename="libgazebo_ros_object_move.so">
+          <robotNamespace></robotNamespace>
+          <objectName>blockA</objectName>
+          <legacyMode>false</legacyMode>
+          </plugin>
+    </model> 
+
+    <model name="blockB">
+      <pose>1.4956 -0.465094 0.771262 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.15</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.15</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    <static>1</static>
+      <plugin name="push_animate" filename="libgazebo_ros_object_move.so">
+          <robotNamespace></robotNamespace>
+          <objectName>blockB</objectName>
+          <legacyMode>false</legacyMode>
+          </plugin>
+    </model> 
+
+    <model name="blockC">
+      <pose>1.4956 -0.8469 0.771262 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.15</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.15</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    <static>1</static>
+      <plugin name="push_animate" filename="libgazebo_ros_object_move.so">
+          <robotNamespace></robotNamespace>
+          <objectName>blockC</objectName>
+          <legacyMode>false</legacyMode>
+          </plugin>
+    </model> 
+
+
+    <include>
+      <uri>model://movable_female</uri>
+      <name>blockC</name>
+      <pose>2.5146 0.8749 0.0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://movable_male</uri>
+      <name>blockC</name>
+      <pose>3.25 0.67646 0.0 0 0 0</pose>
+    </include>
+
+
+    <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+
+  </world>
+</sdf>

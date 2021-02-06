@@ -1,0 +1,5 @@
+/home/ruthz/pepper_ws/src/pepper_ros/gazebo_animated_box/build/CMakeFiles/edit_cache.dir
+/home/ruthz/pepper_ws/src/pepper_ros/gazebo_animated_box/build/CMakeFiles/animated_box.dir
+/home/ruthz/pepper_ws/src/pepper_ros/gazebo_animated_box/build/CMakeFiles/rebuild_cache.dir
+/home/ruthz/pepper_ws/src/pepper_ros/gazebo_animated_box/build/CMakeFiles/independent_listener.dir
+/home/ruthz/pepper_ws/src/pepper_ros/gazebo_animated_box/build/CMakeFiles/integrated_main.dir
