@@ -3,6 +3,14 @@ import pygame
 import pygame.freetype
 pygame.init()
 
+def GetPlaceofAgent(belief_list,agent_name):
+    for belief in belief_list:#[if "_"+agent_name"_" in belief]:
+        print(agent_name , belief)
+        if(" "+agent_name+" " in belief):
+            print(agent_name , belief)
+            if("at" in belief.split(" ") or "!at" in belief.split(" ") ):
+                print(belief)
+    return
 
 
 class Box:
@@ -36,14 +44,14 @@ class Box:
 
 
 class Agent:
-    def __init__(self,name_,X,Y,x_max, y_max, place_, no_agents, instanceGame, screen):
+    def __init__(self,name_,X,Y,x_max, y_max, place_, tot_agents, instanceGame, screen):
         self.name = name_
         self.x = X 
         self.y = Y 
         self.place = place_
         self.max_x = x_max 
         self.max_y = y_max
-        self.no_agents = no_agents
+        self.tot_agents = tot_agents
         self.objects = dict()
         self.instanceGame = instanceGame
         self.surface = screen
@@ -52,8 +60,8 @@ class Agent:
         self.objects[name] = object_                                
 
     def DrawPlace(self):
-        l_y = self.max_y/(2*self.no_agents)
-        l_x = (self.max_x/2)
+        l_y = self.max_y/(2*self.tot_agents)*0.9
+        l_x = (self.max_x/2)*0.9
         #print(self.x, self.y, l_x, l_y)
         self.instanceGame.draw.line(self.surface,(255,0,0),
                                     (self.x -l_x ,self.y + l_y),
@@ -66,7 +74,10 @@ class Agent:
                                     (self.x + l_x,self.y +l_y ),2)  
         self.instanceGame.draw.line(self.surface,(255,0,0),
                                     (self.x - l_x ,self.y - l_y ),
-                                    (self.x + l_x,self.y - l_y ),2)           
+                                    (self.x + l_x,self.y - l_y ),2)
+    def RenderBeliefs(self):
+        return  
+
 
 
 
@@ -77,7 +88,7 @@ states = state.split(')')
 state_dict = dict()
 for state in states:
     if(len(state.split(']')) > 1):
-        if(state.split(']')[0][-1] not in list(state_dict.keys())  ):
+        if(state.split(']')[0][-1] not in list(state_dict.keys())):
             state_dict[state.split(']')[0][-1]] = list()
         else:
             state_dict[state.split(']')[0][-1]].append(state.split(']')[-1][1:])
@@ -87,7 +98,11 @@ for state in states:
         else:
             state_dict["pepper"].append(state.split(']')[-1][1:])
 #screen = pygame.display.set_mode((800, 600))
-X = 300
+
+"""
+@brief Dimension of rendered window
+"""
+X = 300 
 Y = 300*len(list(state_dict.keys()))
 
 #  green, blue colour .
@@ -98,8 +113,22 @@ blue = (0, 0, 128)
 screen = pygame.display.set_mode([X, Y])
 
 tot_agents = len(list(state_dict.keys()))
-agent1 = Agent(name_="a",X=X/2,Y=Y/(2*tot_agents),x_max=X, y_max=Y, place_="p1", no_agents=tot_agents, instanceGame=pygame, screen=screen)
-agent2 = Agent(name_="b",X=X/2,Y=3*Y/(2*tot_agents),x_max=X, y_max=Y, place_="p1", no_agents=tot_agents, instanceGame=pygame, screen=screen)
+agent1 = Agent(name_="a",X=X/2,Y=Y/(2*tot_agents),x_max=X, y_max=Y, place_="p1", tot_agents=tot_agents, instanceGame=pygame, screen=screen)
+agent2 = Agent(name_="b",X=X/2,Y=3*Y/(2*tot_agents),x_max=X, y_max=Y, place_="p1", tot_agents=tot_agents, instanceGame=pygame, screen=screen)
+agent2 = Agent(name_="pepper",X=X/2,Y=3*Y/(2*tot_agents),x_max=X, y_max=Y, place_="p1", tot_agents=tot_agents, instanceGame=pygame, screen=screen)
+
+all_agents = list()
+for idx,agent in enumerate(list(state_dict.keys())):
+    #for belief in state_dict[agent]:
+    GetPlaceofAgent(state_dict[agent],agent)  
+    print(agent) 
+    all_agents.append(Agent(name_=agent,
+                            X=X/2,Y=Y/(2*tot_agents),#centroid for agent's belief rendering
+                            x_max=X, y_max=Y,#Total screen size
+                            place_="p1", # place of events
+                            tot_agents=tot_agents, #Total no. of agents
+                            instanceGame=pygame,
+                            screen=screen))
 
 
 
